@@ -1,0 +1,48 @@
+%Andres Gracia
+clc
+clear 
+
+Ac= input('Ingrese la Amplitud de la Portadora o Carrier:  ');
+Am= input('Ingrese la Amplitud del Mensaje:  ');
+fc= input('Ingrese la Frecuencia del Carrier o Portadora fc>fm:  ');
+fm= input('Ingrese la Frecuencia del Mensaje:  ');
+t=  input('Ingrese un Período de Tiempo:  ');
+tf= linspace (t,-t);
+Wc= 2*(pi*fc);
+Wm= 2*pi*fm;
+y1= cos(Wc*tf);
+y2= cos(Wm*tf);
+y11= Ac*y1; 
+y22=Am*y2;
+u= Am/Ac;   
+eq=(1+u.*y22).*(Ac.*y11);
+subplot(311);
+plot(tf,y22);
+xlabel('Tiempo');
+ylabel('Amplitud');
+title('Señal del Mensaje')
+
+subplot(312)
+plot(tf,y11);
+xlabel('Tiempo');
+ylabel('Amplitud');
+title('Señal De Portadora');
+
+subplot(313);
+plot(tf,eq);
+plot(tf,eq,'r');
+xlabel('Tiempo');
+ylabel('Amplitud');
+title('Señal Modulada');
+
+%Sinificado
+%xlabel(''); Pone nombre al eje x
+%ylabel(''); Pone nombre al eje y
+%title(''); Pone titulo o Nombre a la gráfica
+%plot (x,y,'a'); dibuja la grafica con los atributos del eje x, eje y y
+%opciinal es el color
+
+%Recursos
+%https://electrosome.com/am-generation-matlab/
+%https://www.youtube.com/watch?v=0bZHvmwET1M
+%Andres Gracia
